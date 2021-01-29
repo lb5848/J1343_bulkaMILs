@@ -50,15 +50,15 @@ CATALYST::pbMDS(sce, color_by = "condition", features = type_markers(sce), fun =
 
 plotExprHeatmap(sce, features = type_markers(sce), k = "meta10", 
                 by = "cluster_id", scale = "last", bars = TRUE, perc = TRUE)
-plotAbundances(sce, k = "meta8", by = "cluster_id", group_by = "condition")
+plotAbundances(sce, k = "meta10", by = "cluster_id", group_by = "condition")
 
 # annotate clusters
 
-annotation_table <- as.data.frame(cbind(c(1:8), c(1:8)))
+annotation_table <- as.data.frame(cbind(c(1:10), c(1:10)))
 
-colnames(annotation_table) <- c("meta8", "Clusters")
+colnames(annotation_table) <- c("meta10", "Clusters")
 annotation_table$Clusters <- factor(annotation_table$Clusters)
-sce <- mergeClusters(sce, k = "meta8", 
+sce <- mergeClusters(sce, k = "meta10", 
                      table = annotation_table, id = "cluster_annotation", overwrite = TRUE)
 sce$cluster_annotation <- cluster_ids(sce, "cluster_annotation")
 # filtered_sce <- filterSCE(sce, cluster_id %in% c(paste0("C", c(1:12))), k = "cluster_annotation")
@@ -84,10 +84,10 @@ out_DA <- diffcyt(sce,
                   experiment_info = ei, design = design, contrast = contrast,
                   analysis_type = "DA", method_DA = "diffcyt-DA-edgeR",
                   clustering_to_use = "cluster_annotation", verbose = TRUE, subsampling = TRUE,
-                  transform = FALSE, normalize = FALSE)
+                  transform = FALSE, normalize = FALSE, min_cells = 100, min_samples = 7)
 
 da <- rowData(out_DA$res)
-plotDiffHeatmap(sce, da, top_n = 12, all = TRUE, fdr = FDR_cutoff)
+plotDiffHeatmap(sce, da, top_n = 10, all = TRUE, fdr = FDR_cutoff)
 
 save(list = ls(), file = "workspaceDA.rds")
 

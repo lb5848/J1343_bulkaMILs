@@ -50,7 +50,7 @@ load(file = "workspaceDA.rds")
 CATALYST::pbMDS(sce, color_by = "condition", features = type_markers(sce), fun = "median")
 
 plotExprHeatmap(sce, features = type_markers(sce), k = "cluster_annotation", 
-                by = "cluster_id", scale = "first", bars = TRUE, perc = TRUE)
+                by = "cluster_id", scale = "last", bars = TRUE, perc = TRUE)
 
 
 # set outputPath

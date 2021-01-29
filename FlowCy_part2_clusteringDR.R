@@ -68,8 +68,32 @@ sce <- runDR(sce, dr =  "UMAP", cells = n_cells, features = "type")
 
 saveRDS(sce, file = "SCE_CRvsPD_DR.rds")
 
+
+
+
 display.brewer.all(colorblindFriendly = TRUE)
 delta_area(sce)
+
+plotAbundances(sce, k = "meta4", by = "cluster_id", group_by = "condition") #C1 and C3
+plotExprHeatmap(sce, features = type_markers(sce), k = "meta4", by = "cluster_id",
+                fun = "mean", scale = "last", bars = TRUE, perc = TRUE)
+plotAbundances(sce, k = "meta6", by = "cluster_id", group_by = "condition") #C4 and C5
+plotExprHeatmap(sce, features = type_markers(sce), k = "meta6", by = "cluster_id",
+                fun = "mean", scale = "last", bars = TRUE, perc = TRUE)
+plotAbundances(sce, k = "meta8", by = "cluster_id", group_by = "condition") #C5 and C6
+plotExprHeatmap(sce, features = type_markers(sce), k = "meta8", by = "cluster_id",
+                fun = "mean", scale = "last", bars = TRUE, perc = TRUE)
+plotAbundances(sce, k = "meta10", by = "cluster_id", group_by = "condition") #C6, C7, C8
+plotExprHeatmap(sce, features = type_markers(sce), k = "meta10", by = "cluster_id",
+                fun = "mean", scale = "last", bars = TRUE, perc = TRUE)
+plotAbundances(sce, k = "meta12", by = "cluster_id", group_by = "condition") #C7, C8, C9
+plotExprHeatmap(sce, features = type_markers(sce), k = "meta12", by = "cluster_id",
+                fun = "mean", scale = "last", bars = TRUE, perc = TRUE)
+
+plotAbundances(sce, k = "meta6", by = "cluster_id", group_by = "condition")
+plotExprHeatmap(sce, features = type_markers(sce), k = "meta6", by = "cluster_id",
+                fun = "mean", scale = "last", bars = TRUE, perc = TRUE)
+
 cdx <- type_markers(sce)
 plotMultiHeatmap(sce, k = "meta12",
                  hm1 = cdx, hm2 = "abundances", 
@@ -82,7 +106,7 @@ plotMultiHeatmap(sce, k = "meta10",
 plotExprHeatmap(sce, features = type_markers(sce), k = "meta8", by = "cluster_id",
                 fun = "mean", scale = "last", bars = TRUE, perc = TRUE)
 
-plotAbundances(sce, k = "meta10", by = "cluster_id", group_by = "condition")
+
 
 plotExprHeatmap(sce, features = type_markers(sce), k = "meta10", by = "cluster_id",
                 fun = "mean", scale = "last", bars = TRUE, perc = TRUE)
